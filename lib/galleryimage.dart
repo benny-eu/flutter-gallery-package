@@ -7,22 +7,39 @@ import './gallery_Item_thumbnail.dart';
 import './gallery_image_view_wrapper.dart';
 import './util.dart';
 
-class GalleryImage extends StatefulWidget {
-  final List<String> imageUrls;
+// class GalleryImage extends StatefulWidget {
+//   final List<String> imageUrls;
+//   final String? titleGallery;
+
+//   const GalleryImage({required this.imageUrls, this.titleGallery});
+//   @override
+//   _GalleryImageState createState() => _GalleryImageState();
+// }
+
+// class name extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
+class GalleryImage extends StatelessWidget {
+  final List<GalleryItemModel> galleryItems;
   final String? titleGallery;
+  final Function? onDelete;
 
-  const GalleryImage({required this.imageUrls, this.titleGallery});
-  @override
-  _GalleryImageState createState() => _GalleryImageState();
-}
+  GalleryImage({
+    Key? key,
+    required this.galleryItems,
+    this.titleGallery,
+    this.onDelete,
+  }) : super(key: key);
 
-class _GalleryImageState extends State<GalleryImage> {
-  List<GalleryItemModel> galleryItems = <GalleryItemModel>[];
-  @override
-  void initState() {
-    buildItemsList(widget.imageUrls);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   buildItemsList(widget.imageUrls);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +61,21 @@ class _GalleryImageState extends State<GalleryImage> {
                       // if have less than 4 image w build GalleryItemThumbnail
                       // if have mor than 4 build image number 3 with number for other images
                       child: galleryItems.length > 3 && index == 2
-                          ? buildImageNumbers(index)
+                          ? buildImageNumbers(index, context)
                           : GalleryItemThumbnail(
                               galleryItem: galleryItems[index],
                               onTap: () {
-                                openImageFullScreen(index);
+                                openImageFullScreen(index, context);
                               },
                             ));
                 }));
   }
 
 // build image with number for other images
-  Widget buildImageNumbers(int index) {
+  Widget buildImageNumbers(int index, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        openImageFullScreen(index);
+        openImageFullScreen(index, context);
       },
       child: Stack(
         alignment: AlignmentDirectional.center,
@@ -82,12 +99,12 @@ class _GalleryImageState extends State<GalleryImage> {
   }
 
 // to open gallery image in full screen
-  void openImageFullScreen(final int indexOfImage) {
+  void openImageFullScreen(final int indexOfImage, BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => GalleryImageViewWrapper(
-          titleGallery: widget.titleGallery,
+          titleGallery: titleGallery,
           galleryItems: galleryItems,
           backgroundDecoration: const BoxDecoration(
             color: Colors.black,
