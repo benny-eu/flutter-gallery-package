@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -19,7 +20,7 @@ class GalleryItemThumbnail extends StatelessWidget {
         onTap: onTap,
         child: Hero(
           tag: galleryItem.id,
-          child: Image.network(
+          child: ExtendedImage.network(
             galleryItem.imageUrl,
             fit: BoxFit.cover,
             // imageUrl: galleryItem.imageUrl,

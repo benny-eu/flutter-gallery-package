@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:photo_view/photo_view.dart';
@@ -62,11 +63,11 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
     final GalleryItemModel item = widget.galleryItems[index];
     return PhotoViewGalleryPageOptions.customChild(
       child: Container(
-        child: CachedNetworkImage(
-          imageUrl: item.imageUrl,
-          placeholder: (context, url) =>
-              Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+        child: ExtendedImage.network(
+          item.imageUrl,
+          // placeholder: (context, url) =>
+          //     Center(child: CircularProgressIndicator()),
+          // errorWidget: (context, url, error) => Icon(Icons.error),
         ),
       ),
       initialScale: PhotoViewComputedScale.contained,
