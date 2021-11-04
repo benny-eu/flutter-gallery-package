@@ -49,7 +49,7 @@ class GalleryImage extends StatelessWidget {
             ? getEmptyWidget()
             : GridView.builder(
                 primary: false,
-                itemCount: galleryItems.length,
+                itemCount: galleryItems.length > 3 ? 3 : galleryItems.length,
                 padding: EdgeInsets.all(0),
                 semanticChildCount: 1,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -63,20 +63,20 @@ class GalleryImage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                     // if have less than 4 image w build GalleryItemThumbnail
                     // if have mor than 4 build image number 3 with number for other images
-                    // child: galleryItems.length > 3 && index == 2
-                    //     ? buildImageNumbers(index, context)
-                    //     : GalleryItemThumbnail(
-                    //         galleryItem: galleryItems[index],
-                    //         onTap: () {
-                    //           openImageFullScreen(index, context);
-                    //         },
-                    //       ),
-                    child: GalleryItemThumbnail(
-                      galleryItem: galleryItems[index],
-                      onTap: () {
-                        openImageFullScreen(index, context);
-                      },
-                    ),
+                    child: galleryItems.length > 3 && index == 2
+                        ? buildImageNumbers(index, context)
+                        : GalleryItemThumbnail(
+                            galleryItem: galleryItems[index],
+                            onTap: () {
+                              openImageFullScreen(index, context);
+                            },
+                          ),
+                    // child: GalleryItemThumbnail(
+                    //   galleryItem: galleryItems[index],
+                    //   onTap: () {
+                    //     openImageFullScreen(index, context);
+                    //   },
+                    // ),
                   );
                 }));
   }
