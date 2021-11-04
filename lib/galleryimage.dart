@@ -26,7 +26,7 @@ import './util.dart';
 class GalleryImage extends StatelessWidget {
   final List<GalleryItemModel> galleryItems;
   final String? titleGallery;
-  final Function? onDelete;
+  final Function(int index)? onDelete;
 
   GalleryImage({
     Key? key,
@@ -87,17 +87,24 @@ class GalleryImage extends StatelessWidget {
 
   Widget buildDeleteButton(Widget child, int index, BuildContext context) {
     return Stack(
-      alignment: AlignmentDirectional.topEnd,
-      // fit: StackFit.,
+      alignment: AlignmentDirectional.center,
+      fit: StackFit.expand,
       children: <Widget>[
         child,
-        Container(
-          color: Colors.black.withOpacity(.7),
-          child: IconButton(
-            icon: Icon(Icons.delete_forever_outlined, color: Colors.white),
-            onPressed: () {
-              onDelete?.call();
-            },
+        Positioned(
+          top: 0,
+          right: 0,
+          child: Container(
+            color: Colors.black.withOpacity(.7),
+            child: IconButton(
+              icon: Icon(
+                Icons.delete_forever_outlined,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                onDelete?.call(index);
+              },
+            ),
           ),
         ),
       ],
