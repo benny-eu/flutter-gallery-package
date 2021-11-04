@@ -49,11 +49,14 @@ class GalleryImage extends StatelessWidget {
             ? getEmptyWidget()
             : GridView.builder(
                 primary: false,
-                itemCount: galleryItems.length > 3 ? 3 : galleryItems.length,
+                itemCount: galleryItems.length,
                 padding: EdgeInsets.all(0),
                 semanticChildCount: 1,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, mainAxisSpacing: 0, crossAxisSpacing: 5),
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 5,
+                ),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return ClipRRect(
