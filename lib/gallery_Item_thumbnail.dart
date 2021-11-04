@@ -19,13 +19,14 @@ class GalleryItemThumbnail extends StatelessWidget {
         onTap: onTap,
         child: Hero(
           tag: galleryItem.id,
-          child: CachedNetworkImage(
+          child: Image.network(
+            galleryItem.imageUrl,
             fit: BoxFit.cover,
-            imageUrl: galleryItem.imageUrl,
-            height: 100.0,
-            placeholder: (context, url) =>
-                Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+            // imageUrl: galleryItem.imageUrl,
+            // height: 100.0,
+            // placeholder: (context, url) =>
+            //     Center(child: CircularProgressIndicator()),
+            // errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
       ),
