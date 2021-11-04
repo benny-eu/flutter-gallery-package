@@ -57,17 +57,24 @@ class GalleryImage extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      // if have less than 4 image w build GalleryItemThumbnail
-                      // if have mor than 4 build image number 3 with number for other images
-                      child: galleryItems.length > 3 && index == 2
-                          ? buildImageNumbers(index, context)
-                          : GalleryItemThumbnail(
-                              galleryItem: galleryItems[index],
-                              onTap: () {
-                                openImageFullScreen(index, context);
-                              },
-                            ));
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    // if have less than 4 image w build GalleryItemThumbnail
+                    // if have mor than 4 build image number 3 with number for other images
+                    // child: galleryItems.length > 3 && index == 2
+                    //     ? buildImageNumbers(index, context)
+                    //     : GalleryItemThumbnail(
+                    //         galleryItem: galleryItems[index],
+                    //         onTap: () {
+                    //           openImageFullScreen(index, context);
+                    //         },
+                    //       ),
+                    child: GalleryItemThumbnail(
+                      galleryItem: galleryItems[index],
+                      onTap: () {
+                        openImageFullScreen(index, context);
+                      },
+                    ),
+                  );
                 }));
   }
 
