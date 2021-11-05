@@ -27,12 +27,14 @@ class GalleryImage extends StatelessWidget {
   final List<GalleryItemModel> galleryItems;
   final String? titleGallery;
   final Function(int index)? onDelete;
+  final bool readOnly;
 
   GalleryImage({
     Key? key,
     required this.galleryItems,
     this.titleGallery,
     this.onDelete,
+    this.readOnly = false,
   }) : super(key: key);
 
   // @override
@@ -86,6 +88,8 @@ class GalleryImage extends StatelessWidget {
   }
 
   Widget buildDeleteButton(Widget child, int index, BuildContext context) {
+    if (readOnly) return child;
+
     return Stack(
       alignment: AlignmentDirectional.center,
       fit: StackFit.expand,
